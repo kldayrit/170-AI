@@ -1,0 +1,137 @@
+# check possible moves from the boardstate
+    # parang mas tama to
+    # moveset = []
+    # for x in range(3):
+    #     for y in range(3):
+    #         if board[x][y] == '-':
+    #             moveset.append([x,y])
+    # m = -10000
+    # for a in moveset:
+    #     next_board = copy.deepcopy(board)
+    #     next_board[x][y] = bot
+    #     if stateCheck(bot,next_board) == True:
+    #         boardState = copy.deepcopy(next_board)
+    #         return 0 #pang end
+    # temp_count = 10000
+    # for i in moveset:
+    #     x,y = i
+    #     print(i)
+    #     next_board = copy.deepcopy(board)
+    #     next_board[x][y] = bot
+    #     v,count = maxMove(bot, next_board, 0)
+    #     print(v,m)
+    #     if v >= m and count<temp_count :
+    #         m = v
+    #         boardState = copy.deepcopy(next_board)
+
+
+    # player = 'X'
+    # bot = 'O'
+    # while(1):
+    #     player = input("Choose side X | O : ").upper()
+    #     if player in ['X','O']:
+    #         if player == 'X':
+    #             bot = 'O'
+    #         else:
+    #             bot = 'X'
+    #         break
+    # printBoard(boardState)
+    # done = []
+    # while(1):
+    #     x,y = [int(i) for i in input("Enter coordinate for {0}: ".format(player)).split()]
+    #     if (x,y) in done:
+    #         print("Coordinate already has value, input another")
+    #         continue
+    #     if not(x<3 and x>=0) or not(y<3 and y>=0):
+    #         print("Invalid coordinates")
+    #         continue
+    #     done.append((x,y))
+    #     move(player, x , y)
+    #     printBoard(boardState)
+    #     if stateCheck(player, boardState) == True:
+    #         print("Congrats")
+    #         break
+    #     elif stateCheck(player, boardState) == "DRAW":
+    #         print("DRAW")
+    #         break
+    #     botMove(bot)
+    #     if stateCheck(bot, boardState) == True:
+    #         print("Lose")
+    #         break
+    #     elif stateCheck(bot, boardState) == "DRAW":
+    #         print("DRAW")
+    #         break
+    #     else:
+    #         continue
+
+
+
+
+# maximize move
+# m is pos infinity
+# alternate
+# call minMove in the next possible state of maxMove
+# call maxMove in the next possible state of minMove
+# gang maratign last
+# check muna mga next if may mga possible clear dun bago mag proceed sa tree (yung min max min max)
+# def maxMove(current, board_state, counter):
+#     m = -10000000 # instead of negative infinity
+#     next = 'O'
+#     if current == 'O':
+#         next = 'X'
+#     # check if state is end
+#     if stateCheck(current, board_state) == True:
+#         m = 1
+#         return m, counter
+#     elif stateCheck(current, board_state) == "DRAW":
+#         m = 0
+#         return m, counter
+#     #get next possible state of the board
+#     moveset = []
+#     for x in range(3):
+#         for y in range(3):
+#             if board_state[x][y] == '-':
+#                 moveset.append([x,y])
+#     temp_count = 10000
+#     for a in moveset:
+#         i,j = a
+#         next_boardstate = copy.deepcopy(board_state)
+#         next_boardstate[i][j] = next
+#         v,count = minMove(next, next_boardstate, counter+1)
+#         # pag mas malaki yung v sa m at mas mababa yung count kesa sa temp count
+#         if max(m,v) == v and count < temp_count:
+#             m = v
+#     return m,count
+# # pagka lagay dapat ng move yung pag check if finish
+# def minMove(current, board_state, counter):
+#     m = 100000000 #instead of positive infinity
+#     next = 'O'
+#     if current == 'O':
+#         next = 'X'
+#     # check if state is end
+#     if stateCheck(current, board_state) == True:
+#         m = -1
+#         return m, counter
+#     elif stateCheck(current, board_state) == "DRAW":
+#         m = 0
+#         return m, counter
+#     #get next possible state of the board
+#     moveset = []
+#     for x in range(3):
+#         for y in range(3):
+#             if board_state[x][y] == '-':
+#                 moveset.append([x,y])
+#     temp_count = -10000
+#     count =0
+#     for a in moveset:
+#         i,j = a
+#         next_boardstate = copy.deepcopy(board_state)
+#         next_boardstate[i][j] = next
+#         v,count = maxMove(next, next_boardstate, counter+1)
+#         if  min(m,v) == v and count > temp_count:
+#             m = v
+#     return m,count
+
+# alternating to 
+# min -> max -> min -> max
+#       bale sa max i checheck yung min
